@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="docs/assets/styles/doc.css">
+  <link rel="stylesheet" href="libs/v.css">
+</head>
+
+<body>
+  <div id="app">加载中</div>
+  <script>
+    window.$docsify = {
+      name: '',
+      repo: '',
+      loadSidebar: 'docs/_sidebar.md',
+      themeColor: '#3F51B5',
+      executeScript: true,
+      count: {
+        countable: true,
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese'
+      },
+      alias: {
+        "/src/.*/_sidebar.md": "docs/_sidebar.md"
+      }
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="docs/assets/javascript/docsify@4.js"></script>
+  <script src="docs/assets/javascript/jquery-3.5.1.min.js"></script>
+  <script src="docs/assets/javascript/html2canvas.min.js"></script>
+  <script src="docs/assets/javascript/FileSaver.min.js"></script>
+  <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script src="docs/assets/javascript/qrcode.js"></script>
+  <script src="docs/assets/javascript/external-script.min.js"></script>
+  <script src="docs/assets/javascript/prism-bash.min.js"></script>
+  <script src="docs/assets/javascript/docsify-copy-code.js"></script>
+  <script src="docs/assets/javascript/countable.js"></script>
+  <script src="docs/assets/javascript/fixedBar.js"></script>
+  <script src="docs/assets/javascript/codePreview.js"></script>
+</body>
+
+</html>

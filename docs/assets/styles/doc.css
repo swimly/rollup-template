@@ -1,0 +1,131 @@
+.doc-fixed{
+  position:fixed;
+  right:1rem;
+  bottom:1rem;
+  box-shadow: -2px 2px 8px #ccc;
+  list-style: none;
+  margin:0;
+  padding:0 !important;
+}
+.doc-fixed li dl{
+  margin:0;
+  position:relative;
+}
+.doc-fixed dl dt{
+  width:2rem;
+  height:2rem;
+  cursor: pointer;
+  border:0.2rem solid #fff;
+  box-sizing: border-box;
+  font-size:0;
+}
+.doc-fixed dl dt svg{
+  width:100%;
+}
+.doc-fixed dl dd{
+  margin:0;
+  position:absolute;
+  right:140%;
+  bottom:0;
+  padding:0.4rem;
+  box-sizing: border-box;
+  width:160px;
+  height:160px;
+  background:#fff;
+  box-shadow: -2px 2px 8px #ccc;
+  display:none;
+}
+.doc-fixed dl:hover dd{
+  display:block;
+}
+
+.doc-preview{
+  width:375px;
+}
+
+
+.doc-frame{
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:#fff;
+  z-index:100;
+  display:flex;
+  flex-direction: column;
+}
+.doc-frame-head{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  height:60px;
+  border-bottom:1px solid #eee;
+  padding:0 20px;
+  box-sizing: border-box;
+}
+.doc-frame-title{
+  font-size:20px;
+  color:#333;
+  margin:0;
+  flex:1;
+}
+.doc-frame-buttons{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.doc-frame-buttons button{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  height:36px;
+  border:1px solid var(--theme-color,#42b983);
+  background:var(--theme-color,#42b983);
+  padding:0 20px;
+  margin-left:8px;
+  color:#fff;
+  border-radius:2px;
+  outline:none;
+  cursor: pointer;
+}
+.doc-frame-content{
+  flex:1;
+  display:flex;
+  flex-direction: row;
+  align-items:flex-start;
+}
+.doc-frame-left,
+.doc-frame-right{
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.doc-frame-left{
+  flex:1;
+}
+.doc-editor{
+  flex:1;
+  width:100%;
+}
+.doc-editor .container{
+  height:100%;
+}
+.doc-phone{
+  width:320px;
+  height:568px;
+  margin:0 20px;
+  border:1px solid #eee;
+}
+.doc-phone iframe{
+  border:none;
+  width:100%;
+  height:100%;
+}
+
+.doc-preview iframe{
+  border:none;
+  margin:0;
+}

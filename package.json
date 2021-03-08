@@ -1,5 +1,5 @@
 {
-  "name": "{{name}}",
+  "name": "h",
   "version": "0.0.1",
   "description": "{{description}}",
   "author": "{{author}}",
@@ -31,7 +31,8 @@
     "dev": "cross-env NODE_ENV=development gulp dev"
   },
   "dependencies": {
-    "@stencil/core": "^2.0.1"
+    "@stencil/core": "^2.0.1",
+    "monaco-editor": "^0.23.0"
   },
   "license": "MIT",
   "devDependencies": {

@@ -23,12 +23,12 @@ const bundleTypescript = async () => {
   // rollup导出格式
   const format = isDev ? ['umd'] : ['umd', 'cjs', 'amd', 'es', 'iife']
   gulp.src(dirs)
-  .pipe(through.obj((file, enc, cb) => {
-    format.forEach((f, i) => {
-      bundleRollup(file.relative, f)
-    })
-    cb()
-  }))
+    .pipe(through.obj((file, enc, cb) => {
+      format.forEach((f, i) => {
+        bundleRollup(file.relative, f)
+      })
+      cb()
+    }))
 }
 
 // 启动本地服务器
@@ -37,51 +37,65 @@ const startServer = async () => {
     server: {
       baseDir: './'
     },
-    open: false
+    open: true
   })
   // 监听文件
   gulp.watch('./src/**/*.scss', gulp.series(bundleSass))
   gulp.watch(['src/components/**/*.ts', 'src/components/*.ts'], gulp.series(bundleTypescript))
-  gulp.watch(['*.html', './src/components/**/*.html']).on('change', reload)
+  gulp.watch([
+    '*.html',
+    './src/components/**/*.html',
+    './docs/**/*',
+    './*.md',
+    './docs/assets/**/*.js',
+  ]).on('change', reload)
 }
 
+// 复制component中的readme到doc
+const copyMarkdown = async () => {
+  gulp.src('./src/components/**/*.md')
+    .pipe(gulp.dest('./doc/web'))
+}
+
+// 开发环境打包sass
 const bundleSass = async () => {
   const output = isDev ? `${pkg.output}` : `${pkg.output}/${pkg.version}`
   gulp.src('./src/components/**/*.scss')
-  .pipe(sass({
-    outputStyle: 'expanded',
-    sourceMap: true
-  }).on('error', (err) => {
-    console.log(err)
-    reload({stream: true})
-  }))
-  .pipe(sourcemaps.init())
-  .pipe(autoprefixer(pkg.browserslist))
-  .pipe(cleancss())
-  .pipe(concat(`${pkg.name}.css`))
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(output))
-  .pipe(filter('**/*.css'))
-  .pipe(reload({stream: true}))
+    .pipe(sass({
+      outputStyle: 'expanded',
+      sourceMap: true
+    }).on('error', (err) => {
+      console.log(err)
+      reload({ stream: true })
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(autoprefixer(pkg.browserslist))
+    .pipe(cleancss())
+    .pipe(concat(`${pkg.name}.css`))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(output))
+    .pipe(filter('**/*.css'))
+    .pipe(reload({ stream: true }))
 }
 
+// 生产环境打包主题文件
 const bundleTheme = async () => {
   gulp.src('./src/themes/**/index.scss')
-  .pipe(sass({
-    outputStyle: 'compressed',
-    sourceMap: true
-  }))
-  .pipe(sourcemaps.init())
-  .pipe(autoprefixer(pkg.browserslist))
-  .pipe(cleancss())
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(`${pkg.output}/${pkg.version}/themes/`))
+    .pipe(sass({
+      outputStyle: 'compressed',
+      sourceMap: true
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(autoprefixer(pkg.browserslist))
+    .pipe(cleancss())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(`${pkg.output}/${pkg.version}/themes/`))
 }
 
 // rollup打包
 const bundleRollup = async (filepath, format) => {
   const narr = filepath.split('-')
-  const name = narr[narr.length-1].replace('.ts', '')
+  const name = narr[narr.length - 1].replace('.ts', '')
   console.log(`开始打包${name}[${format}]`)
   rollup.rollup({
     input: `src/components/${filepath}`,
