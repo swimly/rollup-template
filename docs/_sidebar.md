@@ -1,3 +1,3 @@
 - [欢迎]()
 - 组件
-  - [Button](src/components/hc-button/readme)
+  - [Button](src/components/v-button/readme)

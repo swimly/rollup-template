@@ -44,10 +44,7 @@ const startServer = async () => {
   gulp.watch(['src/components/**/*.ts', 'src/components/*.ts'], gulp.series(bundleTypescript))
   gulp.watch([
     '*.html',
-    './src/components/**/*.html',
-    './docs/**/*',
-    './*.md',
-    './docs/assets/**/*.js',
+    './src/components/**/*',
   ]).on('change', reload)
 }
 
@@ -68,12 +65,14 @@ const bundleSass = async () => {
       console.log(err)
       reload({ stream: true })
     }))
-    .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.init())
     .pipe(autoprefixer(pkg.browserslist))
     .pipe(cleancss())
     .pipe(concat(`${pkg.name}.css`))
-    .pipe(sourcemaps.write('.'))
+    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(output))
+    .pipe(concat(`components.css`))
+    .pipe(gulp.dest('docs/assets/styles'))
     .pipe(filter('**/*.css'))
     .pipe(reload({ stream: true }))
 }
