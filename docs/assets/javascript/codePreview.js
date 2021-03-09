@@ -1,10 +1,10 @@
 ! function () {
   function e() {
-    var main = Docsify.dom.getNode("#main")
+    // var main = Docsify.dom.getNode("#main")
     $('.doc-preview').each(function () {
       var code = $.trim($(this).find('.doc-preview-content').html())
       $(`
-        <div class="doc-preview">
+        <div class="doc-preview-buttons">
           <button class="see">查看代码</button>
           <button class="capture">截图</button>
           <button class="copy">复制代码</button>
@@ -28,7 +28,7 @@
           useCORS: true
         }).then(function (canvas) {
           canvas.toBlob(function(blob) {
-            saveAs(blob, "hangge.png");
+            saveAs(blob, `${(new Date().getTime())}.png`);
          });
         });
       })
