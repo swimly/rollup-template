@@ -33,18 +33,19 @@ const bundleTypescript = async () => {
 
 // 启动本地服务器
 const startServer = async () => {
-  browserSync.init({
+  var server = browserSync.init({
     server: {
       baseDir: './'
     },
-    open: true
+    open: false
   })
   // 监听文件
   gulp.watch('./src/**/*.scss', gulp.series(bundleSass))
   gulp.watch(['src/components/**/*.ts', 'src/components/*.ts'], gulp.series(bundleTypescript))
   gulp.watch([
-    '*.html',
-    './src/components/**/*',
+    './src/components/**/*.html',
+    './src/components/**/*.md',
+    './docs/*.md'
   ]).on('change', reload)
 }
 
@@ -65,16 +66,14 @@ const bundleSass = async () => {
       console.log(err)
       reload({ stream: true })
     }))
-    // .pipe(sourcemaps.init())
     .pipe(autoprefixer(pkg.browserslist))
     .pipe(cleancss())
     .pipe(concat(`${pkg.name}.css`))
-    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(output))
+    .pipe(reload({stream: true}))
     .pipe(concat(`components.css`))
     .pipe(gulp.dest('docs/assets/styles'))
     .pipe(filter('**/*.css'))
-    .pipe(reload({ stream: true }))
 }
 
 // 生产环境打包主题文件

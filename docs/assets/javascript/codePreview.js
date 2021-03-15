@@ -39,7 +39,7 @@
         var iframe = $(`<iframe></iframe>`).appendTo(parent.find('.doc-preview-content'))
         iframe.prev().remove()
         iframe.height(height)
-        servePreview(code, iframe)
+        servePreview(code, iframe, true)
       }
 
       function toggle(parent, cls) {
@@ -147,10 +147,10 @@
             setTimeout(function () {
               editor.getAction(['editor.action.formatDocument'])._run()
             }, 700)
-            servePreview(code, $('#phone'))
+            servePreview(code, $('#phone'), false)
             // 添加点击事件
             $('#preview').click(function () {
-              servePreview(editor.getValue(), $('#phone'))
+              servePreview(editor.getValue(), $('#phone'), false)
             })
             $('#format').click(function () {
               editor.getAction(['editor.action.formatDocument'])._run()
@@ -161,15 +161,23 @@
             $('#copy').click(function () {
               copyTocontent(editor.getValue())
             })
+            $('.doc-frame').on('keydown', function (e) {
+              var keyCode = e.keyCode || e.which || e.charCode;
+              var ctrlKey = e.ctrlKey || e.metaKey;
+              if (ctrlKey && keyCode == 83) {
+                e.preventDefault();
+                servePreview(editor.getValue(), $('#phone'), false)
+              }
+            })
           });
         })
       }
 
-      function servePreview(code, dom) {
+      function servePreview(code, dom, flag) {
         var codes = `
         <div class="v-page" interval style="height:auto;background:none;">
           <section class="v-page-content">
-            ${code}
+            <div class="v-panel" compact="v">${code}</div>
           </section>
         </div>
         `
@@ -194,8 +202,13 @@
             ${css}
           </style>
         `
+        var style1 = flag ?  `<style>body{
+          display:flex;
+          flex-direction:row;
+          align-items:center;
+        }</style>` : ``
         var l = window.location
-        var blob = new Blob([style, codes], { type: 'text/html', endings: 'transparent' })
+        var blob = new Blob([style, style1, codes], { type: 'text/html', endings: 'transparent' })
         var url = URL.createObjectURL(blob)
         dom.attr('src', url)
       }

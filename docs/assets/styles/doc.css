@@ -88,7 +88,7 @@
   display:flex;
   flex-direction: row;
   align-items: center;
-  height:36px;
+  height:32px;
   border:1px solid var(--theme-color,#42b983);
   background:var(--theme-color,#42b983);
   padding:0 20px;
@@ -98,6 +98,10 @@
   border-radius:2px;
   outline:none;
   cursor: pointer;
+}
+.doc-frame-buttons button:not(:last-child){
+  background:none;
+  color:var(--theme-color,#42b983);
 }
 .doc-frame-content{
   flex:1;
@@ -128,6 +132,8 @@
   height:568px;
   margin:0 20px;
   border:1px solid #eee;
+  padding: 1rem 0;
+  box-sizing: border-box;
 }
 .doc-phone iframe{
   border:none;
@@ -136,7 +142,11 @@
 }
 .doc-preview-content{
   position:relative;
+  background:#fff;
+  font-size:0;
   z-index:10;
+  min-height: 44px;
+  box-sizing: border-box;
 }
 .doc-preview iframe{
   border:none;
@@ -162,4 +172,104 @@
 }
 .doc-preview:hover .doc-preview-buttons{
   transform: translate(0, -50%);
+}
+.doc-preview:hover .doc-preview-content{
+  text-align:center;
+}
+.logo{
+  flex:1;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color:#fff;
+}
+.logo img{
+  height:34px;
+  margin-right:0.4rem;
+}
+.search{
+  position:fixed;
+  left:260px;
+  z-index:100;
+  margin:0 !important;
+  border:none !important;
+  padding:0 !important;
+  height:60px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search .results-panel{
+  position:absolute;
+  top: 60px;
+  left:0;
+  background:#fff;
+  width: 600px;
+  height: 600px;
+  box-shadow: 0 2px 8px #ccc;
+  padding: 20px;
+  border-radius:5px;
+  box-sizing: border-box;
+}
+.sidebar{
+  margin-top:60px;
+}
+.card{
+  background:#fff;
+  box-shadow: 0 8px 12px #ebedf0;
+  border-radius:4px;
+  padding:0 20px 20px 20px;
+  margin-bottom:20px;
+  overflow:hidden;
+}
+.card:last-child{
+  margin-bottom:0;
+}
+.card > h3{
+  font-weight: 400;
+}
+.phone{
+  width:375px;
+  /* box-shadow: #ebedf0 0 4px 12px; */
+  border-radius:2px;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border:1px solid #f7f8fa;
+}
+.card pre{
+  display:none;
+}
+.card table{
+  table-layout: fixed;
+  display:table;
+}
+.card table th:first-child{
+  width: 100px;
+}
+.card table th:last-child{
+  width: 120px;
+}
+.iframe{
+  position:absolute;
+  top:100px;
+  right:40px;
+  width:320px;
+  height: 568px;
+  background:#fff;
+  border-radius:10px;
+  box-shadow: 0 8px 12px #ebedf0;
+  border: 10px solid #fff;
+}
+.iframe iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+.iframe.fixed{
+  position:fixed;
+  top: 100px;
+  right:57px;
 }
