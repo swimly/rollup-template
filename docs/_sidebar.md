@@ -1,4 +1,3 @@
 - **开发指南**
-  - [颜色]()
 - **基础组件**
-  - [Button 按钮](/src/components/v-button/readme)
+  - [Button 按钮](/src/components/v-button/readme.md?preview=1)

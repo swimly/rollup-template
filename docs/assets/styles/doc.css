@@ -191,7 +191,7 @@
 }
 .search{
   position:fixed;
-  left:260px;
+  left:360px;
   z-index:100;
   margin:0 !important;
   border:none !important;
@@ -224,6 +224,7 @@
   padding:0 20px 20px 20px;
   margin-bottom:20px;
   overflow:hidden;
+  position: relative;
 }
 .card:last-child{
   margin-bottom:0;
@@ -238,6 +239,7 @@
   padding: 0.5rem;
   box-sizing: border-box;
   border:1px solid #f7f8fa;
+  overflow:hidden;
 }
 .card pre{
   display:none;
@@ -254,10 +256,10 @@
 }
 .iframe{
   position:absolute;
-  top:100px;
-  right:40px;
-  width:320px;
-  height: 568px;
+  top:200px;
+  right:0;
+  width:375px;
+  height: 667px;
   background:#fff;
   border-radius:10px;
   box-shadow: 0 8px 12px #ebedf0;
@@ -270,6 +272,48 @@
 }
 .iframe.fixed{
   position:fixed;
-  top: 100px;
-  right:57px;
+  top: 60px;
+}
+.card-handle{
+  position:absolute;
+  right:0;
+  top:0;
+  padding:10px;
+  transform: translateY(-100%);
+  transition: 0.3s;
+}
+.card-handle button{
+  display:inline-block;
+  padding: 0.3rem 0.5rem;
+  border:1px solid var(--theme-color, #42b983);
+  color:var(--theme-color, #42b983);
+  outline:none;
+  border-radius: 2px;
+  background-color: #fff;
+  cursor: pointer;
+
+}
+.card:hover .card-handle{
+  transform: translateY(0);
+}
+@media screen and (max-width:1600px){
+  .app-nav{
+    padding:0 2rem;
+  }
+  .sidebar{
+    left:2rem;
+  }
+  .content{
+    right:2rem;
+    left:2rem;
+  }
+  .iframe{
+    width:320px;
+    height:568px;
+  }
+  .markdown-section{
+    padding:20px 350px 30px 30px;
+    width:100%;
+    margin:0;
+  }
 }
